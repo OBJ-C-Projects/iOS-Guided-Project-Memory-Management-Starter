@@ -26,8 +26,8 @@
 
 - (void)dealloc
 {
- 
     NSLog(@"-[Car dealloc]: %@", self);
+    [_make release];
     // TODO: Implement dealloc with MRC
     [super dealloc];
 }
