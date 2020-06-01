@@ -45,13 +45,26 @@
     //NSLog(@"Counter after release: %@",name.retainCount);
     
     //All collection types will take ownership of memory
-    NSMutableArray *colors = [[NSMutableArray alloc] init];
+    NSMutableArray *colors = [[NSMutableArray alloc] init]; // retian count 1
     
+    NSString *favoriteColor = [[NSString alloc] initWithString:@"Blue"];// retian count 1
+    
+    NSString *favoriteColorTwo = [[[NSString alloc] initWithString:@"red"] autorelease];// Use of autorelease
+    
+    [colors addObject:favoriteColor];// favoriteColor: 2
+     [colors addObject:favoriteColorTwo];// favoriteColor: 2
     NSLog(@"%@",colors);
-    
+    [favoriteColor release];
     
     //clean up
     [colors release];
+    
+    
+    Car *honda = [[[Car alloc] init]autorelease];
+    Person *person = [[[Person alloc] initWithCar:honda] autorelease];
+    
+    person.car = [[[Car alloc] initWithMake: @"Porsche"]autorelease];
+    
 }
 
 
